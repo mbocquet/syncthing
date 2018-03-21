@@ -1,0 +1,7 @@
+---
+# handlers file for syncthing
+- name: restart
+  systemd:
+    name: 'syncthing@{{ st_user }}.service'
+    daemon_reload: yes
+...

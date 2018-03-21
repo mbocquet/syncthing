@@ -1,0 +1,10 @@
+---
+# defaults file for syncthing
+st_packages:
+  - syncthing
+  - syncthing-inotify
+st_key_url: 'https://syncthing.net/release-key.txt'
+st_user: 'syncthing'
+# service(s) dependencies
+# st_systemd_after: 'autofs.service'
+...

@@ -1,0 +1,64 @@
+---
+# tasks file for syncthing
+- name: APT key
+  apt_key:
+    url: '{{ st_key_url }}'
+  tags:
+    - syncthing
+    - key
+
+- name: APT repository
+  apt_repository:
+    filename: 'syncthing'
+    repo: 'deb https://apt.syncthing.net/ syncthing stable'
+  tags:
+    - syncthing
+    - repo
+
+- name: "APT preferences"
+  template:
+    src: 'apt.preferences.j2'
+    dest: '/etc/apt/preferences.d/syncthing'
+  tags:
+    - syncthing
+    - preferences
+
+- name: Packages
+  package:
+    name: '{{ item }}'
+  with_items: '{{ st_packages }}'
+  tags:
+    - syncthing
+    - packages
+
+- name: Systemd Unit
+  template:
+    src: systemd.j2
+    dest: /etc/systemd/system/syncthing@.service
+  notify: restart
+  tags:
+    - syncthing
+    - systemd
+
+- name: User
+  user:
+    name: 'syncthing'
+    comment: 'Syncthing'
+    system: yes
+    createhome: yes
+  when: st_user == 'syncthing'
+  tags:
+    - syncthing
+    - user
+
+- name: Service
+  systemd:
+    name: '{{ item }}@{{ st_user }}.service'
+    enabled: yes
+    state: started
+    daemon_reload: yes
+  with_items: '{{ st_packages }}'
+  tags:
+    - syncthing
+    - services
+...
