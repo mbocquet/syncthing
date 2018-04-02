@@ -14,7 +14,7 @@ Many. See defaults/main.yml.
 
 None.
 
-## Install this roles as submodule of an existing GIT repository
+## Install this role as submodule of an existing GIT repository
 
 `git submodule add https://github.com/mbocquet/syncthing.git roles/syncthing`
 
