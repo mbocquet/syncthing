@@ -1,13 +1,13 @@
 ---
 # tasks file for syncthing
-- name: APT key
+- name: "APT key"
   apt_key:
     url: '{{ st_key_url }}'
   tags:
     - syncthing
     - key
 
-- name: APT repository
+- name: "APT repository"
   apt_repository:
     filename: 'syncthing'
     repo: 'deb https://apt.syncthing.net/ syncthing stable'
@@ -23,7 +23,7 @@
     - syncthing
     - preferences
 
-- name: Packages
+- name: "Packages"
   package:
     name: '{{ item }}'
   with_items: '{{ st_packages }}'
@@ -31,7 +31,7 @@
     - syncthing
     - packages
 
-- name: Systemd Unit
+- name: "Systemd Unit"
   template:
     src: systemd.j2
     dest: /etc/systemd/system/syncthing@.service
@@ -40,7 +40,7 @@
     - syncthing
     - systemd
 
-- name: User
+- name: "user"
   user:
     name: 'syncthing'
     comment: 'Syncthing'
@@ -51,7 +51,7 @@
     - syncthing
     - user
 
-- name: Service
+- name: "service"
   systemd:
     name: '{{ item }}@{{ st_user }}.service'
     enabled: yes
