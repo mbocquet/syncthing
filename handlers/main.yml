@@ -4,4 +4,7 @@
   systemd:
     name: 'syncthing@{{ st_user }}.service'
     daemon_reload: yes
+
+- name: apply sysctl settings
+  shell: 'sysctl -p {{ st_sysctl_file }}'
 ...

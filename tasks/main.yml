@@ -61,4 +61,16 @@
   tags:
     - syncthing
     - services
+
+- name: "sysctl"
+  template:
+    src: 'st_sysctl.conf.j2'
+    dest: '{{ st_sysctl_file }}'
+  when:
+    - st_max_user_watches is defined
+  notify:
+    - apply sysctl settings
+  tags:
+    - syncthing
+    - sysctl
 ...

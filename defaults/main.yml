@@ -2,9 +2,23 @@
 # defaults file for syncthing
 st_packages:
   - syncthing
-  - syncthing-inotify
+#   Uncomment to install and use syncthing-inotify
+#   (useless starting from v0.14.47 ?)
+#   - syncthing-inotify
+
 st_key_url: 'https://syncthing.net/release-key.txt'
+
 st_user: 'syncthing'
+
 # service(s) dependencies
+# example to start syncthing after autofs
 # st_systemd_after: 'autofs.service'
+
+# st_max_user_watches
+# If defined, tweak /proc/sys/fs/inotify/max_user_watches with the defined
+# value.
+# st_max_user_watches: '65535'
+
+# default file for sysctl tweaks
+st_sysctl_file: '/etc/sysctl.d/99-syncthing.conf'
 ...
