@@ -22,12 +22,14 @@ None.
 
     - hosts: servers
       roles:
-         - { role: syncthing }
+         - syncthing
 
 
     - hosts: servers
       roles:
          - { role: syncthing, x: 42 }
+
+if any variables comes in the future for this role.
 
 ## License
 
@@ -35,4 +37,4 @@ GPLv3
 
 ## Author Information
 
-http://www.sekoya.org
+<a href="http://www.sekoya.org" target="new">http://www.sekoya.org</a>
