@@ -16,7 +16,7 @@ None.
 
 ## Install this role as submodule of an existing GIT repository
 
-`git submodule add https://github.com/mbocquet/syncthing.git roles/syncthing`
+`git submodule add https://git.sekoya.org/mb/syncthing.git roles/syncthing`
 
 ## Example Playbook
 
