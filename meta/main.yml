@@ -3,7 +3,7 @@ galaxy_info:
   description: Ansible role to install and configure Syncthing.
   company: Sekoya.org (http://www.sekoya.org)
 
-  issue_tracker_url : https://git.sekoya.org/mb/syncthing/issues
+  issue_tracker_url: https://git.sekoya.org/mb/syncthing/issues
 
   license: GPLv3
 
