@@ -26,7 +26,6 @@
 - name: package
   package:
     name: '{{ st_packages }}'
-    force_apt_get: yes
   tags:
     - syncthing
     - package
