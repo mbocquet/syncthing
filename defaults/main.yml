@@ -7,7 +7,7 @@ st_packages:
 #   - syncthing-inotify
 
 st_key_url: 'https://syncthing.net/release-key.txt'
-
+st_apt_repository: 'deb https://apt.syncthing.net/ syncthing stable'
 st_user: 'syncthing'
 
 # service(s) dependencies

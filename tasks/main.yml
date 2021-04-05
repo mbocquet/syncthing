@@ -6,14 +6,18 @@
   tags:
     - syncthing
     - key
+    - apt_key
 
 - name: apt_repository
   apt_repository:
     filename: 'syncthing'
-    repo: 'deb https://apt.syncthing.net/ syncthing stable'
+    repo: '{{ st_apt_repository }}'
+    update_cache: true
   tags:
     - syncthing
     - repo
+    - repository
+    - apt_repository
 
 - name: preferences
   template:
