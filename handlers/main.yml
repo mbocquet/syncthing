@@ -2,9 +2,9 @@
 # handlers file for syncthing
 - name: restart
   systemd:
-    name: 'syncthing@{{ st_user }}.service'
+    name: 'syncthing@{{ syncthing_user }}.service'
     daemon_reload: yes
 
 - name: apply sysctl settings
-  shell: 'sysctl -p {{ st_sysctl_file }}'
+  shell: 'sysctl -p {{ syncthing_sysctl_file }}'
 ...

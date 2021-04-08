@@ -6,26 +6,26 @@
 # 'default' or undefined to use system packages.
 # 'upstream' to use package from syncthing.net.
 #
-# st_origin: 'upstream'
+# syncthing_origin: 'upstream'
 
-st_packages:
+syncthing_packages:
   - syncthing
 
-st_key_url: 'https://syncthing.net/release-key.txt'
-st_apt_repository: 'deb https://apt.syncthing.net/ syncthing stable'
+syncthing_key_url: 'https://syncthing.net/release-key.txt'
+syncthing_apt_repository: 'deb https://apt.syncthing.net/ syncthing stable'
 
-st_user: 'syncthing'
+syncthing_user: 'syncthing'
 
 # service(s) dependencies
 # example to start syncthing after autofs
-# st_systemd_after: 'autofs.service'
+# syncthing_systemd_after: 'autofs.service'
 
-# st_max_user_watches :
+# syncthing_max_user_watches :
 #
 # when defined, tweak /proc/sys/fs/inotify/max_user_watches with the defined
 # value.
 #
-# st_max_user_watches: '65535'
+# syncthing_max_user_watches: '65535'
 
 # default file for sysctl tweaks
-st_sysctl_file: '/etc/sysctl.d/99-syncthing.conf'
+syncthing_sysctl_file: '/etc/sysctl.d/99-syncthing.conf'
