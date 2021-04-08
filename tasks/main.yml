@@ -1,31 +1,36 @@
 ---
 # tasks file for syncthing
-- name: apt_key
-  apt_key:
-    url: '{{ st_key_url }}'
-  tags:
-    - syncthing
-    - key
-    - apt_key
 
-- name: apt_repository
-  apt_repository:
-    filename: 'syncthing'
-    repo: '{{ st_apt_repository }}'
-    update_cache: true
-  tags:
-    - syncthing
-    - repo
-    - repository
-    - apt_repository
+- block:
+  - name: apt_key
+    apt_key:
+      url: '{{ st_key_url }}'
+    tags:
+      - syncthing
+      - key
+      - apt_key
 
-- name: preferences
-  template:
-    src: 'apt.preferences.j2'
-    dest: '/etc/apt/preferences.d/syncthing'
-  tags:
-    - syncthing
-    - preferences
+  - name: apt_repository
+    apt_repository:
+      filename: 'syncthing'
+      repo: '{{ st_apt_repository }}'
+      update_cache: true
+    tags:
+      - syncthing
+      - repo
+      - repository
+      - apt_repository
+
+  - name: preferences
+    template:
+      src: 'apt.preferences.j2'
+      dest: '/etc/apt/preferences.d/syncthing'
+    tags:
+      - syncthing
+      - preferences
+  when:
+    - st_origin is defined
+    - st_origin == "upstream"
 
 - name: package
   package:
