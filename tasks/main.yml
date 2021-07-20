@@ -39,7 +39,7 @@
     - syncthing
     - package
 
-- name: systemd unit
+- name: template
   template:
     src: systemd.j2
     dest: /etc/systemd/system/syncthing@.service
@@ -47,6 +47,14 @@
   tags:
     - syncthing
     - systemd
+
+- name: stat
+  stat:
+    path: /etc/systemd/system/syncthing@.service
+  register: systemd_unit
+  tags:
+    - syncthing
+    - stat
 
 - name: user
   user:
@@ -66,9 +74,12 @@
     state: started
     daemon_reload: yes
   with_items: '{{ syncthing_packages }}'
+  when:
+    - systemd_unit.stat.isfile is defined
+    - systemd_unit.stat.isfile
   tags:
     - syncthing
-    - services
+    - service
 
 - name: sysctl
   template:
