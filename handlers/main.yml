@@ -3,7 +3,7 @@
 - name: restart
   systemd:
     name: 'syncthing@{{ syncthing_user }}.service'
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: apply sysctl settings
   command: 'sysctl -p {{ syncthing_sysctl_file }}'

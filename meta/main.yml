@@ -10,17 +10,18 @@ galaxy_info:
   min_ansible_version: 1.2
 
   platforms:
-  - name: Debian
-    versions:
-    #- all
-    - buster
-    #- etch
-    - jessie
-    #- lenny
-    - sid
-    #- squeeze
-    - stretch
-    #- wheezy
+    - name: Debian
+      versions:
+        # - all
+        - bullseye
+        - buster
+        # - etch
+        - jessie
+        # - lenny
+        - sid
+        # - squeeze
+        - stretch
+        # - wheezy
 
   galaxy_tags:
     - syncthing

@@ -62,8 +62,8 @@
   user:
     name: 'syncthing'
     comment: 'Syncthing'
-    system: yes
-    createhome: yes
+    system: true
+    createhome: true
   when: syncthing_user == 'syncthing'
   tags:
     - syncthing
@@ -72,9 +72,9 @@
 - name: service
   systemd:
     name: '{{ item }}@{{ syncthing_user }}.service'
-    enabled: yes
+    enabled: true
     state: started
-    daemon_reload: yes
+    daemon_reload: true
   with_items: '{{ syncthing_packages }}'
   when:
     - systemd_unit.stat.isfile is defined
