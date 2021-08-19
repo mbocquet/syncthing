@@ -83,7 +83,7 @@
 
 - name: sysctl
   template:
-    src: 'syncthing_sysctl.conf.j2'
+    src: sysctl.conf.j2
     dest: '{{ syncthing_sysctl_file }}'
   when:
     - syncthing_max_user_watches is defined
