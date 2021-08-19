@@ -6,5 +6,5 @@
     daemon_reload: yes
 
 - name: apply sysctl settings
-  shell: 'sysctl -p {{ syncthing_sysctl_file }}'
+  command: 'sysctl -p {{ syncthing_sysctl_file }}'
 ...
