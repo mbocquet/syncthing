@@ -77,8 +77,8 @@
     daemon_reload: true
   with_items: '{{ syncthing_packages }}'
   when:
-    - systemd_unit.stat.isfile is defined
-    - systemd_unit.stat.isfile
+    - systemd_unit.stat.isreg is defined
+    - systemd_unit.stat.isreg
   tags:
     - syncthing
     - service
