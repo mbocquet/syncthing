@@ -4,7 +4,7 @@
 - block:
   - name: apt_key
     apt_key:
-      url: '{{ syncthing_key_url }}'
+      url: "{{ syncthing_key_url }}"
     tags:
       - syncthing
       - key
@@ -12,8 +12,8 @@
 
   - name: apt_repository
     apt_repository:
-      filename: 'syncthing'
-      repo: '{{ syncthing_apt_repository }}'
+      filename: syncthing
+      repo: "{{ syncthing_apt_repository }}"
       update_cache: true
     tags:
       - syncthing
@@ -21,21 +21,9 @@
       - repository
       - apt_repository
 
-  - name: preferences
-    template:
-      src: 'apt.preferences.j2'
-      dest: '/etc/apt/preferences.d/syncthing'
-      mode: 0644
-    tags:
-      - syncthing
-      - preferences
-  when:
-    - syncthing_origin is defined
-    - syncthing_origin == "upstream"
-
 - name: package
   package:
-    name: '{{ syncthing_packages }}'
+    name: "{{ syncthing_packages }}"
   tags:
     - syncthing
     - package
@@ -60,8 +48,8 @@
 
 - name: user
   user:
-    name: 'syncthing'
-    comment: 'Syncthing'
+    name: syncthing'
+    comment: Syncthing
     system: true
     createhome: true
   when: syncthing_user == 'syncthing'
@@ -71,11 +59,11 @@
 
 - name: service
   systemd:
-    name: '{{ item }}@{{ syncthing_user }}.service'
+    name: "{{ item }}@{{ syncthing_user }}.service"
     enabled: true
     state: started
     daemon_reload: true
-  with_items: '{{ syncthing_packages }}'
+  with_items: "{{ syncthing_packages }}"
   when:
     - systemd_unit.stat.isreg is defined
     - systemd_unit.stat.isreg
@@ -86,7 +74,7 @@
 - name: sysctl
   template:
     src: sysctl.conf.j2
-    dest: '{{ syncthing_sysctl_file }}'
+    dest: "{{ syncthing_sysctl_file }}"
     mode: 0644
   when:
     - syncthing_max_user_watches is defined
@@ -95,4 +83,3 @@
   tags:
     - syncthing
     - sysctl
-...
