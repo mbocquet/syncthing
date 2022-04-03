@@ -2,28 +2,29 @@
 # tasks file for syncthing
 
 - block:
-  - name: apt_key
-    apt_key:
+  - name: apt key
+    get_url:
       url: "{{ syncthing_key_url }}"
+      dest: "{{ syncthing_key_dest }}"
+      mode: 0644
     tags:
       - syncthing
+      - apt
       - key
-      - apt_key
 
-  - name: apt_repository
-    apt_repository:
-      filename: syncthing
-      repo: "{{ syncthing_apt_repository }}"
-      update_cache: true
+  - name: apt repository
+    template:
+      src: syncthing.list.j2
+      dest: /etc/apt/sources.list.d/syncthing.list
     tags:
       - syncthing
-      - repo
+      - apt
       - repository
-      - apt_repository
 
 - name: package
   package:
     name: "{{ syncthing_packages }}"
+    update_cache: true
   tags:
     - syncthing
     - package
@@ -48,7 +49,7 @@
 
 - name: user
   user:
-    name: syncthing'
+    name: syncthing
     comment: Syncthing
     system: true
     createhome: true

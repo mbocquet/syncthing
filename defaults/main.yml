@@ -11,10 +11,13 @@
 syncthing_packages:
   - syncthing
 
-syncthing_key_url: 'https://syncthing.net/release-key.txt'
-syncthing_apt_repository: 'deb https://apt.syncthing.net/ syncthing stable'
+syncthing_key_url: https://syncthing.net/release-key.gpg
+syncthing_key_dest: /etc/apt/trusted.gpg.d/syncthing-release-key.gpg
+syncthing_apt_repository:
+  "deb [signed-by={{ syncthing_key_dest }}] https://apt.syncthing.net/
+  syncthing stable"
 
-syncthing_user: 'syncthing'
+syncthing_user: syncthing
 
 # service(s) dependencies
 # example to start syncthing after autofs
@@ -28,4 +31,4 @@ syncthing_user: 'syncthing'
 # syncthing_max_user_watches: '65535'
 
 # default file for sysctl tweaks
-syncthing_sysctl_file: '/etc/sysctl.d/99-syncthing.conf'
+syncthing_sysctl_file: /etc/sysctl.d/99-syncthing.conf
