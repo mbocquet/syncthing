@@ -7,4 +7,3 @@
 
 - name: apply sysctl settings
   command: 'sysctl -p {{ syncthing_sysctl_file }}'
-...
