@@ -1,7 +1,8 @@
 ---
 # tasks file for syncthing
 
-- block:
+- name: syncthing
+  block:
   - name: apt key
     get_url:
       url: "{{ syncthing_key_url }}"
