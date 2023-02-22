@@ -3,27 +3,27 @@
 
 - name: syncthing
   block:
-  - name: apt key
-    get_url:
-      url: "{{ syncthing_key_url }}"
-      dest: "{{ syncthing_key_dest }}"
-      mode: 0644
-    # https://github.com/ansible/ansible/issues/65687
-    when: not ansible_check_mode
-    tags:
-      - syncthing
-      - apt
-      - key
+    - name: apt key
+      get_url:
+        url: "{{ syncthing_key_url }}"
+        dest: "{{ syncthing_key_dest }}"
+        mode: 0644
+      # https://github.com/ansible/ansible/issues/65687
+      when: not ansible_check_mode
+      tags:
+        - syncthing
+        - apt
+        - key
 
-  - name: apt repository
-    template:
-      src: syncthing.list.j2
-      dest: /etc/apt/sources.list.d/syncthing.list
-      mode: 0644
-    tags:
-      - syncthing
-      - apt
-      - repository
+    - name: apt repository
+      template:
+        src: syncthing.list.j2
+        dest: /etc/apt/sources.list.d/syncthing.list
+        mode: 0644
+      tags:
+        - syncthing
+        - apt
+        - repository
   when:
     - syncthing_origin is defined
     - syncthing_origin == 'upstream'
