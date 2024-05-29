@@ -3,9 +3,7 @@
 [Unit]
 Description=Syncthing - Open Source Continuous File Synchronization for %I
 Documentation=man:syncthing(1)
-After=network.target{% if syncthing_systemd_after is defined %}{% for service in syncthing_systemd_after %} {{ service }}{% endfor %}
-
-{% endif %}
+After=network.target
 
 [Service]
 User=%i
