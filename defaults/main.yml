@@ -1,12 +1,11 @@
 ---
 # defaults file for syncthing
 
-# origin of packages :
-#
-# 'default' or undefined to use system packages.
+# syncthing_origin : origin of packages
+# 'default' or undefined to use the distribution package.
 # 'upstream' to use package from syncthing.net.
 #
-# syncthing_origin: 'upstream'
+# syncthing_origin: upstream
 
 syncthing_packages:
   - syncthing
@@ -19,16 +18,10 @@ syncthing_apt_repository:
 
 syncthing_user: syncthing
 
-# service(s) dependencies
-# example to start syncthing after autofs
-# syncthing_systemd_after: 'autofs.service'
-
-# syncthing_max_user_watches :
-#
-# when defined, tweak /proc/sys/fs/inotify/max_user_watches with the defined
-# value.
-#
-# syncthing_max_user_watches: '65535'
-
-# default file for sysctl tweaks
-syncthing_sysctl_file: /etc/sysctl.d/99-syncthing.conf
+# syncthing_systemd_user : systemd unit type
+# false or undefined to deploy a global systemd unit in
+# /etc/systemd/system/syncthing@.service
+# true to deploy a user systemd unit in the user's home directory
+# ~syncthing_user/.config/systemd/user/syncthing.service
+# The non-global user must already exist
+# syncthing_systemd_user: true
