@@ -7,26 +7,16 @@ galaxy_info:
 
   license: GPLv3
 
-  min_ansible_version: "1.2"
+  min_ansible_version: "2.4"
 
   platforms:
     - name: Debian
       versions:
-        # - all
-        - bullseye
-        - buster
-        - bookworm
-        # - etch
-        - jessie
-        # - lenny
-        - sid
-        # - squeeze
-        - stretch
-        # - wheezy
+        - all
 
   galaxy_tags:
     - syncthing
     - sync
-    - sysadmin
+    - synchronisation
 
 dependencies: []
