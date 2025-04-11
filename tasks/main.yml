@@ -9,7 +9,7 @@
     - syncthing_origin == 'upstream'
   block:
     - name: APT key
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ syncthing_key_url }}"
         dest: "{{ syncthing_key_dest }}"
         mode: 0644
@@ -19,7 +19,7 @@
         - key
 
     - name: APT repository
-      template:
+      ansible.builtin.template:
         src: syncthing.list.j2
         dest: /etc/apt/sources.list.d/syncthing.list
         mode: 0644
@@ -27,7 +27,7 @@
         - repository
 
 - name: Package
-  package:
+  ansible.builtin.package:
     name: "{{ syncthing_packages }}"
     update_cache: true
   tags:
@@ -43,7 +43,7 @@
     - syncthing_systemd_user
   block:
     - name: File
-      file:
+      ansible.builtin.file:
         path: "~{{ syncthing_user }}/.config/systemd/user"
         state: directory
         owner: "{{ syncthing_user }}"
@@ -53,7 +53,7 @@
         - directory
 
     - name: Template
-      template:
+      ansible.builtin.template:
         src: systemd.user.j2
         dest: "~{{ syncthing_user }}/.config/systemd/user/syncthing.service"
         mode: 0644
@@ -83,7 +83,7 @@
       not syncthing_systemd_user
   block:
     - name: user
-      user:
+      ansible.builtin.user:
         name: "{{ syncthing_user }}"
         system: true
         create_home: true
@@ -91,7 +91,7 @@
         - user
 
     - name: service
-      systemd_service:
+      ansible.builtin.systemd_service:
         name: "syncthing@{{ syncthing_user }}.service"
         enabled: true
         state: started
