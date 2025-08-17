@@ -1,11 +1,11 @@
 ---
 # handlers file for syncthing
-- name: systemd restart
+- name: Systemd restart
   ansible.builtin.systemd_service:
     name: 'syncthing@{{ syncthing_user }}.service'
     daemon_reload: true
 
-- name: systemd user restart
+- name: Systemd user restart
   become: true
   become_method: ansible.builtin.runas
   become_user: "{{ syncthing_user }}"

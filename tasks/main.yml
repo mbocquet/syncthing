@@ -57,7 +57,7 @@
         src: systemd.user.j2
         dest: "~{{ syncthing_user }}/.config/systemd/user/syncthing.service"
         mode: 0644
-      notify: systemd user restart
+      notify: Systemd user restart
       tags:
         - unit
 
@@ -82,7 +82,7 @@
     - syncthing_systemd_user is not defined or
       not syncthing_systemd_user
   block:
-    - name: user
+    - name: User
       ansible.builtin.user:
         name: "{{ syncthing_user }}"
         system: true
@@ -90,7 +90,7 @@
       tags:
         - user
 
-    - name: service
+    - name: Service
       ansible.builtin.systemd_service:
         name: "syncthing@{{ syncthing_user }}.service"
         enabled: true
