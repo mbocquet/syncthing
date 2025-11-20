@@ -2,7 +2,7 @@
 # handlers file for syncthing
 - name: Systemd restart
   ansible.builtin.systemd_service:
-    name: 'syncthing@{{ syncthing_user }}.service'
+    name: syncthing@{{ syncthing_user }}.service
     daemon_reload: true
 
 - name: Systemd user restart
