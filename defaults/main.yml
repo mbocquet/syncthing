@@ -13,8 +13,8 @@ syncthing_packages:
 syncthing_key_url: https://syncthing.net/release-key.gpg
 syncthing_key_dest: /etc/apt/trusted.gpg.d/syncthing-release-key.gpg
 syncthing_apt_repository:
-  "deb [signed-by={{ syncthing_key_dest }}] https://apt.syncthing.net/
-  syncthing stable"
+  deb [signed-by={{ syncthing_key_dest }}] https://apt.syncthing.net/
+  syncthing stable
 
 syncthing_user: syncthing
 

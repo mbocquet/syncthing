@@ -44,7 +44,7 @@
   block:
     - name: File
       ansible.builtin.file:
-        path: "~{{ syncthing_user }}/.config/systemd/user"
+        path: ~{{ syncthing_user }}/.config/systemd/user
         state: directory
         owner: "{{ syncthing_user }}"
         group: "{{ syncthing_user }}"
@@ -55,7 +55,7 @@
     - name: Template
       ansible.builtin.template:
         src: systemd.user.j2
-        dest: "~{{ syncthing_user }}/.config/systemd/user/syncthing.service"
+        dest: ~{{ syncthing_user }}/.config/systemd/user/syncthing.service
         mode: "0644"
       notify: Systemd user restart
       tags:
@@ -92,7 +92,7 @@
 
     - name: Service
       ansible.builtin.systemd_service:
-        name: "syncthing@{{ syncthing_user }}.service"
+        name: syncthing@{{ syncthing_user }}.service
         enabled: true
         state: started
         daemon_reload: true
